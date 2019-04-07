@@ -19,28 +19,15 @@ const Product = props => {
         <div class="header">{props.productName}</div>
         <div class="description">Price: ${props.price}</div>
       </div>
-      <div
-        class="ui bottom attached button"
-        onClick={() => {
-          props.onAddToCart(props.productName, props.price);
-        }}
-        //addToCart(props.productName)}
-      >
+      <div class="ui bottom attached button" onClick={props.onAddToCart}>
         <i class="add icon" />
         Add to Cart
       </div>
-      <div
-        class="ui bottom attached button"
-        onClick={() => {
-          props.onRemoveFromCart(props.productName, props.price);
-        }}
-        //addToCart(props.productName)}
-      >
+      <div class="ui bottom attached button" onClick={props.onRemoveFromCart}>
         <i class="remove icon" />
         Remove from Cart
       </div>
     </div>
   );
 };
-
 export default Product;

@@ -26,17 +26,44 @@ class Cart extends React.Component {
     };
   }
 
-  // handleAddToCart(productName, price) {
-  //   let itemsCopy = [...this.state.cartItems];
-  //   for (let item in itemsCopy) {
-  //     if (item.productName === productName) {
-  //       item.count = item.count + 1;
-  //     } else {
-  //       itemsCopy.push([{ productName: productName, price: price, count: 1 }]);
-  //     }
-  //   }
-  //   this.setState({ cartItems: itemsCopy });
-  // }
+  handleAddToCart(productName, price) {
+    let itemsCopy = [...this.state.cartItems];
+    let added = false;
+    for (let i = 0; i < itemsCopy.length; i++) {
+      let item = itemsCopy[i];
+      if (item.productName === productName) {
+        item.count = item.count + 1;
+        added = true;
+      }
+    }
+
+    if (!added) {
+      itemsCopy.push({
+        productName: productName,
+        price: price,
+        count: 1
+      });
+    }
+    this.setState({ cartItems: itemsCopy });
+  }
+
+  handleRemoveFromCart(productName, price) {
+    let itemsCopy = [...this.state.cartItems];
+    let removed = false;
+    for (let i = 0; i < itemsCopy.length; i++) {
+      let item = itemsCopy[i];
+      if (item.productName === productName) {
+        item.count = item.count - 1;
+        if (item.count <= 0) {
+          removed = true;
+        }
+      }
+    }
+    if (removed) {
+      itemsCopy = itemsCopy.filter(item => item.productName !== productName);
+    }
+    this.setState({ cartItems: itemsCopy });
+  }
 
   render() {
     return (
@@ -47,46 +74,12 @@ class Cart extends React.Component {
             <Product
               productName={product.name}
               price={product.cost}
-              // onAddToCart={this.handleAddToCart}
-              onAddToCart={(productName, price) => {
-                let itemsCopy = [...this.state.cartItems];
-                let added = false;
-                for (let i = 0; i < itemsCopy.length; i++) {
-                  let item = itemsCopy[i];
-                  if (item.productName === productName) {
-                    item.count = item.count + 1;
-                    added = true;
-                  }
-                }
-
-                if (!added) {
-                  itemsCopy.push({
-                    productName: productName,
-                    price: price,
-                    count: 1
-                  });
-                }
-                this.setState({ cartItems: itemsCopy });
-              }}
-              onRemoveFromCart={(productName, price) => {
-                let itemsCopy = [...this.state.cartItems];
-                let removed = false;
-                for (let i = 0; i < itemsCopy.length; i++) {
-                  let item = itemsCopy[i];
-                  if (item.productName === productName) {
-                    item.count = item.count - 1;
-                    if (item.count <= 0) {
-                      removed = true;
-                    }
-                  }
-                }
-                if (removed) {
-                  itemsCopy = itemsCopy.filter(
-                    item => item.productName !== productName
-                  );
-                }
-                this.setState({ cartItems: itemsCopy });
-              }}
+              onAddToCart={() =>
+                this.handleAddToCart(product.name, product.cost)
+              }
+              onRemoveFromCart={() =>
+                this.handleRemoveFromCart(product.name, product.cost)
+              }
               // limit={product.stock}
             />
           ))}
