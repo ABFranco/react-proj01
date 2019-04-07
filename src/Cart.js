@@ -27,18 +27,15 @@ class Cart extends React.Component {
   }
 
   // handleAddToCart(productName, price) {
-  //   console.log();
   //   let itemsCopy = [...this.state.cartItems];
   //   for (let item in itemsCopy) {
   //     if (item.productName === productName) {
   //       item.count = item.count + 1;
-  //       console.log(item);
   //     } else {
   //       itemsCopy.push([{ productName: productName, price: price, count: 1 }]);
   //     }
   //   }
   //   this.setState({ cartItems: itemsCopy });
-  //   console.log(this.state);
   // }
 
   render() {
@@ -50,6 +47,7 @@ class Cart extends React.Component {
             <Product
               productName={product.name}
               price={product.cost}
+              // onAddToCart={this.handleAddToCart}
               onAddToCart={(productName, price) => {
                 let itemsCopy = [...this.state.cartItems];
                 let added = false;
@@ -93,9 +91,7 @@ class Cart extends React.Component {
             />
           ))}
         </div>
-        <div>
-          <Receipt items={this.state.cartItems} />
-        </div>
+        <Receipt items={this.state.cartItems} />
       </div>
     );
   }

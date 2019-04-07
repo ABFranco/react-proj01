@@ -37,5 +37,14 @@ Part 2
 Checkoff Question 2.0
 Give an example of a component we haven't built or talked about in class that would require state. Why does it need state?
 
+A "Person" might have state that includes their name, height, weight, age. Meanwhile, we also have a "roster" that accessess all of this info. Since these properties about the "Persons" can change and a "roster" needs to update too, we would need to access the state to change these properties for each "Person" to make "roster" realize changes occurred.
+
 Checkoff Question 2.1
 How do we accomplish parent-to-child communication in React? What about child-to-parent? Why can't they be the same?
+
+Parent communicates to a child using props. Children can use a function defined in the parent that was passed into the child using props.
+
+Checkoff Question 2.2
+How might we go about adding and removing items from the cart given the structure of our state?
+
+Using a function defined in the parent, we pass it into the child. The child then calls this function when it wants to update state since the parent will be able to access its state.
