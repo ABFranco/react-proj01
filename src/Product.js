@@ -1,17 +1,17 @@
 import React from "react";
 
 const Product = props => {
-  let count = 0;
-  function addToCart(name) {
-    count += 1;
-    if (props.limit === 0) {
-      alert("This item is out of stock!");
-    } else if (count > props.limit) {
-      alert("There are too many " + name + "s in your cart!");
-    } else {
-      alert("There are " + count + " " + name + "s in your cart!");
-    }
-  }
+  // let count = 0;
+  // function addToCart(name) {
+  //   count += 1;
+  //   if (props.limit === 0) {
+  //     alert("This item is out of stock!");
+  //   } else if (count > props.limit) {
+  //     alert("There are too many " + name + "s in your cart!");
+  //   } else {
+  //     alert("There are " + count + " " + name + "s in your cart!");
+  //   }
+  // }
 
   return (
     <div class="card">
@@ -21,10 +21,23 @@ const Product = props => {
       </div>
       <div
         class="ui bottom attached button"
-        onClick={() => addToCart(props.productName)}
+        onClick={() => {
+          props.onAddToCart(props.productName, props.price);
+        }}
+        //addToCart(props.productName)}
       >
         <i class="add icon" />
         Add to Cart
+      </div>
+      <div
+        class="ui bottom attached button"
+        onClick={() => {
+          props.onRemoveFromCart(props.productName, props.price);
+        }}
+        //addToCart(props.productName)}
+      >
+        <i class="remove icon" />
+        Remove from Cart
       </div>
     </div>
   );

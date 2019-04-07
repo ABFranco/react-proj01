@@ -32,3 +32,10 @@ Using a map function to loop through all of the products to render a Cart for ea
 What benefit, _besides_ code cleanliness, do we get from pulling in the data from an object instead?
 
 We could add more products in Data.js easily and it will make React to create the new card for us. It makes it easier to keep all info about the products in one place.
+
+Part 2
+Checkoff Question 2.0
+Give an example of a component we haven't built or talked about in class that would require state. Why does it need state?
+
+Checkoff Question 2.1
+How do we accomplish parent-to-child communication in React? What about child-to-parent? Why can't they be the same?
